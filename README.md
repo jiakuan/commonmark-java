@@ -1,19 +1,23 @@
 commonmark-java
 ===============
 
-Java implementation of [CommonMark], a specification of the [Markdown] format for turning plain text into formatted text.
-Parses input to an AST (tree of nodes) and then renders to HTML.
+Java library for parsing and rendering [Markdown] text according to the
+[CommonMark] specification (and some extensions).
 
-This started out as a port of [commonmark.js] and has evolved into a full
-library with a nice Java API and some optional extensions. Features:
+Provides classes for parsing input to an abstract syntax tree of nodes
+(AST), visiting and manipulating nodes, and rendering to HTML. It
+started out as a port of [commonmark.js], but has since evolved into a
+full library with a nice API and the following features:
 
-* Small with minimal dependencies
-* Extensible (see below)
+* Small (minimal dependencies)
 * Fast (10-20 times faster than pegdown, see benchmarks in repo)
+* Flexible (manipulate the AST after parsing, customize HTML rendering)
+* Extensible (tables, strikethrough, autolinking and more, see below)
 
 Requirements:
 
 * Java 7 or above
+* Works on Android, minimum API level 15 (see [commonmark-android-test](commonmark-android-test) directory)
 * The core has no dependencies; for extensions, see below
 
 Coordinates for core library (see all on [Maven Central]):
@@ -22,7 +26,7 @@ Coordinates for core library (see all on [Maven Central]):
 <dependency>
     <groupId>com.atlassian.commonmark</groupId>
     <artifactId>commonmark</artifactId>
-    <version>0.4.1</version>
+    <version>0.5.0</version>
 </dependency>
 ```
 
@@ -105,7 +109,7 @@ First, add an additional dependency (see [Maven Central] for others):
 <dependency>
     <groupId>com.atlassian.commonmark</groupId>
     <artifactId>commonmark-ext-gfm-tables</artifactId>
-    <version>0.4.1</version>
+    <version>0.5.0</version>
 </dependency>
 ```
 
@@ -161,7 +165,7 @@ literal: |
 
 document start here
 ```
- 
+
 Use class `YamlFrontMatterExtension` in artifact `commonmark-ext-yaml-front-matter`. To fetch metadata, use `YamlFrontMatterVisitor`.
 
 Contributing
@@ -182,7 +186,7 @@ an issue and explaining the intended change.
 License
 -------
 
-Copyright (c) 2015 Atlassian and others.
+Copyright (c) 2015-2016 Atlassian and others.
 
 BSD (2-clause) licensed, see LICENSE.txt file.
 
