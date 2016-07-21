@@ -10,13 +10,15 @@ import org.junit.runners.MethodSorters;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.commonmark.test.Strings.repeat;
+
 /**
  * Pathological input cases (from commonmark.js).
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PathologicalTest extends CoreRenderingTestCase {
 
-    private int x = 10_000;
+    private int x = 100_000;
 
     @Rule
     public Timeout timeout = new Timeout(3, TimeUnit.SECONDS);
@@ -96,13 +98,5 @@ public class PathologicalTest extends CoreRenderingTestCase {
                 repeat("> ", x) + "a\n",
                 repeat("<blockquote>\n", x) + "<p>a</p>\n" +
                         repeat("</blockquote>\n", x));
-    }
-
-    private static String repeat(String s, int count) {
-        StringBuilder sb = new StringBuilder(s.length() * count);
-        for (int i = 0; i < count; i++) {
-            sb.append(s);
-        }
-        return sb.toString();
     }
 }
